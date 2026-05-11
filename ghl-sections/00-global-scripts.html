@@ -1,0 +1,96 @@
+<!--
+  ============================================================
+  AVANZA HOMES — GLOBAL SCRIPTS + LIGHTBOX HTML
+  Paste this into GHL: Settings → Site → Footer Code
+  This goes ONCE on the site — not per page, not per section.
+  ============================================================
+-->
+
+<!-- Lightbox overlay (must exist in the DOM for the gallery to work) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#8592;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">&#8594;</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+  // Gallery tab switcher
+  document.querySelectorAll('.gallery-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      document.getElementById('gallery-' + btn.dataset.gallery).classList.add('active');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Team carousel
+  (function () {
+    const track = document.getElementById('teamTrack');
+    const prev = document.getElementById('teamPrev');
+    const next = document.getElementById('teamNext');
+    if (!track || !prev || !next) return;
+    const scrollBy = 220;
+    prev.addEventListener('click', () => { track.scrollBy({left: -scrollBy, behavior: 'smooth'}); });
+    next.addEventListener('click', () => { track.scrollBy({left: scrollBy, behavior: 'smooth'}); });
+  })();
+
+  // Lightbox
+  (function () {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCounter = document.getElementById('lightboxCounter');
+    const lbClose = document.getElementById('lightboxClose');
+    const lbPrev = document.getElementById('lightboxPrev');
+    const lbNext = document.getElementById('lightboxNext');
+    if (!lb) return;
+    let images = [], current = 0;
+
+    function open(imgs, idx) { images = imgs; current = idx; show(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function show() {
+      lbImg.src = images[current];
+      lbCounter.textContent = (current + 1) + ' / ' + images.length;
+      lbPrev.style.opacity = current === 0 ? '0.3' : '1';
+      lbNext.style.opacity = current === images.length - 1 ? '0.3' : '1';
+    }
+    function prev() { if (current > 0) { current--; show(); } }
+    function next() { if (current < images.length - 1) { current++; show(); } }
+
+    function bindPanel(panel) {
+      const items = panel.querySelectorAll('.gallery-item img');
+      const srcs = Array.from(items).map(i => i.src);
+      items.forEach((img, idx) => {
+        img.parentElement.style.cursor = 'zoom-in';
+        img.parentElement.addEventListener('click', () => open(srcs, idx));
+      });
+    }
+    document.querySelectorAll('.gallery-panel').forEach(bindPanel);
+
+    lbClose.addEventListener('click', close);
+    lbPrev.addEventListener('click', prev);
+    lbNext.addEventListener('click', next);
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    });
+  })();
+</script>
