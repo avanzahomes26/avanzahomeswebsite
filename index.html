@@ -89,7 +89,7 @@
             {
               "@type": "Offer",
               "name": "FlexSpace 3 Custom Home",
-              "description": "4 bed, 3 bath, 1,907 sq ft dual-unit design with 90% more cashflow vs. traditional rentals."
+              "description": "4 bed, 3 bath, 2,075 sq ft dual-unit design with 90% more cashflow vs. traditional rentals."
             }
           ]
         }
@@ -709,27 +709,27 @@
       gap: 3rem; margin-bottom: 3rem;
     }
     .footer-logo img { height: 22px; width: auto; filter: invert(1); opacity: 0.85; margin-bottom: 0.75rem; display: block; }
-    .footer-tagline { font-size: 0.775rem; color: #555; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
+    .footer-tagline { font-size: 0.775rem; color: #888; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
     .footer-col h5 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem; font-weight: 700; color: #666;
+      font-size: 0.68rem; font-weight: 700; color: #999;
       text-transform: uppercase; letter-spacing: 0.1em;
       margin-bottom: 1rem;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
     .footer-col ul li a {
-      font-size: 0.8125rem; color: #484848; text-decoration: none;
+      font-size: 0.8125rem; color: #777; text-decoration: none;
       transition: color 0.15s; font-family: 'Montserrat', sans-serif;
     }
-    .footer-col ul li a:hover { color: #aaa; }
+    .footer-col ul li a:hover { color: #bbb; }
     .footer-bottom {
       border-top: 1px solid #242424; padding-top: 1.5rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-copy { font-size: 0.75rem; color: #3a3a3a; font-family: 'Montserrat', sans-serif; }
+    .footer-copy { font-size: 0.75rem; color: #666; font-family: 'Montserrat', sans-serif; }
     .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 0.75rem; color: #3a3a3a; text-decoration: none; transition: color 0.15s; font-family: 'Montserrat', sans-serif; }
-    .footer-links a:hover { color: #888; }
+    .footer-links a { font-size: 0.75rem; color: #666; text-decoration: none; transition: color 0.15s; font-family: 'Montserrat', sans-serif; }
+    .footer-links a:hover { color: #aaa; }
 
     /* ── FLOORPLAN DETAIL ── */
     .floorplan-section { background: #fdf8ef; }
@@ -891,6 +891,9 @@
       .market-gallery img:last-child { display: none; }
       .floorplan-grid { gap: 1.5rem; }
     }
+    @media (max-width: 768px) {
+      .nav-cta { display: none; }
+    }
     @media (max-width: 480px) {
       .nav { padding: 0 1rem; }
       .hero { padding: 3.5rem 1rem 0; }
@@ -919,6 +922,7 @@
     <li><a href="#markets">Markets</a></li>
     <li><a href="#programs">Programs</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="/configurator.html">Customize</a></li>
   </ul>
   <a href="https://go.avanza.homes/avanzapartnershipprogram" class="nav-cta">Start Investment Diagnostic</a>
 </nav>
@@ -1063,12 +1067,12 @@
   <div class="section-center">
     <p class="section-eyebrow">Flagship Model</p>
     <h2 class="section-title" id="floorplan-heading">FlexSpace™ 3, Engineered for Maximum Returns</h2>
-    <p class="section-sub">4 bedrooms, 3 bathrooms, 1,907 heated sq ft. Two fully independent living units under one roof, designed from the ground up to generate dual rental income from day one.</p>
+    <p class="section-sub">4 bedrooms, 3 bathrooms, 2,075 heated sq ft. Two fully independent living units under one roof, designed from the ground up to generate dual rental income from day one.</p>
   </div>
   <div class="floorplan-grid">
     <div class="floorplan-img-wrap">
-      <img src="Brand%20multimedia/Flex%20Space%203.png" alt="FlexSpace 3 floor plan, 4 bedroom 3 bathroom dual unit home" class="floorplan-img">
-      <div class="floorplan-badge">1,907 Heated Sq Ft</div>
+      <img src="Brand%20multimedia/5.jpg.jpeg" alt="FlexSpace 3 floor plan, 4 bedroom 3 bathroom dual unit home" class="floorplan-img">
+      <div class="floorplan-badge">2,075 Heated Sq Ft</div>
     </div>
     <div class="floorplan-features">
       <div class="fp-feature">
@@ -1118,7 +1122,7 @@
   <div class="floorplan-stats">
     <div class="fp-stat"><span class="fp-stat-val">4 / 3</span><span class="fp-stat-lbl">Bed / Bath</span></div>
     <div class="fp-stat-div"></div>
-    <div class="fp-stat"><span class="fp-stat-val">1,907</span><span class="fp-stat-lbl">Heated Sq Ft</span></div>
+    <div class="fp-stat"><span class="fp-stat-val">2,075</span><span class="fp-stat-lbl">Heated Sq Ft</span></div>
     <div class="fp-stat-div"></div>
     <div class="fp-stat"><span class="fp-stat-val">$4,200</span><span class="fp-stat-lbl">Avg Monthly Income</span></div>
     <div class="fp-stat-div"></div>
@@ -1461,7 +1465,7 @@
       <p class="section-eyebrow" style="color:#cd8b2c">Design Your Home</p>
       <h2 id="customize-heading">Build it exactly<br><em>the way you want it.</em></h2>
       <p>Every Avanza home is built to order. Choose your lot, floor plan, finishes, and layout details, our team walks you through every decision so the final result matches your vision and your investment goals.</p>
-      <a href="https://avanza.homes/home" class="btn-primary">Start Customizing Your Home</a>
+      <a href="/configurator.html" class="btn-primary">Start Customizing Your Home →</a>
     </div>
   </div>
 </section>
