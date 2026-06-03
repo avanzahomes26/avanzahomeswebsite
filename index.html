@@ -894,6 +894,17 @@
     @media (max-width: 768px) {
       .nav-cta { display: none; }
     }
+
+    /* ── IMAGE PROTECTION ── */
+    img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+    .gallery-item { position: relative; }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .market-gallery { position: relative; }
+    .market-gallery::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .team-photo-wrap { position: relative; }
+    .team-photo-wrap::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .floorplan-img-wrap::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .cta-split-overlay { pointer-events: all; }
     @media (max-width: 480px) {
       .nav { padding: 0 1rem; }
       .hero { padding: 3.5rem 1rem 0; }
@@ -1874,6 +1885,24 @@
       if (e.key === 'ArrowRight') next();
     });
   })();
+</script>
+
+<script>
+  // ── IMAGE PROTECTION ──
+  // Block right-click "Save image as" on all image areas
+  document.addEventListener('contextmenu', function(e) {
+    if (
+      e.target.tagName === 'IMG' ||
+      e.target.closest('.gallery-item, .market-gallery, .team-photo-wrap, .floorplan-img-wrap, .cta-split-img, .hero-video-wrap, #lightbox')
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  // Disable drag-and-drop on all images
+  document.querySelectorAll('img').forEach(function(img) {
+    img.setAttribute('draggable', 'false');
+  });
 </script>
 
 </body>
