@@ -102,8 +102,15 @@
     .viewer-base { width: 100%; height: auto; display: block; transition: opacity .25s ease; }
     .viewer-layer {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; pointer-events: none;
-      transition: opacity .3s ease; user-select: none; -webkit-user-drag: none;
+      object-fit: cover; object-position: center;
+      pointer-events: none; transition: opacity .3s ease;
+      user-select: none; -webkit-user-drag: none;
+    }
+    /* Bathroom overlay has different AR than base (2400×1792 vs 3201×2130).
+       object-fit:contain centers it with neutral bg; cover crops but keeps alignment. */
+    .viewer-shell.zone-bathroom .viewer-layer {
+      object-fit: contain;
+      background: transparent;
     }
     .viewer-zone-label {
       position: absolute; top: .875rem; left: .875rem;
@@ -155,6 +162,12 @@
     .accordion-body { max-height: 0; overflow: hidden; transition: max-height .32s ease; background: #fafafa; }
     .accordion-item.open .accordion-body { max-height: 600px; }
     .accordion-body-inner { padding: 1rem; border-top: 1px solid var(--border); }
+
+    /* FLAT CATEGORY (single-category zones — no accordion) */
+    .flat-cat-section { padding: .25rem 0; }
+    .flat-cat-header { display: flex; align-items: center; gap: .6rem; margin-bottom: .875rem; }
+    .flat-cat-icon { color: var(--gold-4); }
+    .flat-cat-title { font-family: 'Poppins', sans-serif; font-size: .9rem; font-weight: 600; color: #161616; letter-spacing: -.01em; }
 
     /* OPTION CARDS */
     .opt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; }
@@ -509,21 +522,9 @@ const CONFIG_DATA = {
     /* 3 ── KITCHEN ──────────────────────────────────────────── */
     {
       id: 'kitchen', name: 'Kitchen', iconKey: 'kitchen',
-      desc: 'Customize cabinet color, countertop, and fixture finishes.',
+      desc: 'Choose the faucet and fixture finish for the kitchen.',
       baseImage: 'Configurator%20multimedia/Cocina/cocina-original.png',
       categories: [
-        { id: 'cabinets', name: 'Cabinet Color', iconKey: 'cabinet',
-          options: [
-            { id: 'cab-orig', name: 'Original',          price: 0,    layerImage: null, default: true },
-            { id: 'cab-dark', name: 'Dark Brown Cabinets', price: 3200, layerImage: 'Configurator%20multimedia/Cocina/cocina-gabinetes-marron-oscuros.png' }
-          ]
-        },
-        { id: 'countertop', name: 'Countertop', iconKey: 'counter',
-          options: [
-            { id: 'ctr-orig', name: 'Original Granite',     price: 0,    layerImage: null, default: true },
-            { id: 'ctr-alt',  name: 'Alternative Granite',  price: 2800, layerImage: 'Configurator%20multimedia/Cocina/Cocina-Tope-de-granito-alternativo.png' }
-          ]
-        },
         /* PRIMARY fixture category — price is counted here for the whole house */
         { id: 'faucet', name: 'Faucet & Fixtures', iconKey: 'faucet', fixtureCategory: true,
           options: [
@@ -705,6 +706,10 @@ function switchZone(zoneId) {
     btn.classList.toggle('active', btn.dataset.zone === zoneId);
     btn.setAttribute('aria-selected', btn.dataset.zone === zoneId);
   });
+  /* Zone-specific viewer class (used for per-zone CSS overrides) */
+  const viewer = document.getElementById('houseViewer');
+  viewer.className = viewer.className.replace(/\bzone-\S+/g, '').trim();
+  viewer.classList.add('zone-' + zoneId);
 
   /* Set viewer image — synchronously update activeViewImage so updateViewerLayers() filters correctly */
   state.activeViewImage = initialImg;
@@ -766,10 +771,62 @@ function selectOption(catId, optId) {
 }
 
 /* ── PANEL RENDER ── */
+function buildCardsHtml(cat) {
+  return cat.options.map(opt => {
+    const sel = opt.id === state.selections[cat.id];
+    const priceHtml = opt.price === 0
+      ? `<span class="opt-card-price included">Included</span>`
+      : `<span class="opt-card-price upgrade">+${fmt(opt.price)}</span>`;
+    return `<div class="opt-card${sel ? ' selected' : ''}"
+                 data-cat="${cat.id}" data-opt="${opt.id}"
+                 role="radio" aria-checked="${sel}" tabindex="0">
+      <div class="opt-card-header">
+        <span class="opt-card-name">${opt.name}</span>
+        <div class="opt-check"><div class="opt-check-dot"></div></div>
+      </div>
+      ${priceHtml}
+    </div>`;
+  }).join('');
+}
+
+function buildFixtureNote(cat) {
+  if (!FIXTURE_CAT_IDS.includes(cat.id)) return '';
+  return `<div class="fixture-note">
+    <span class="fixture-note-icon">${ICONS.info}</span>
+    <span class="fixture-note-text">The faucet and fixture finish you choose will be applied throughout the entire home — including bathroom, kitchen, kitchenette, and door handles — to ensure a consistent, cohesive look across all spaces.</span>
+  </div>`;
+}
+
+function bindOptCards() {
+  document.querySelectorAll('.opt-card').forEach(card => {
+    const go = () => selectOption(card.dataset.cat, card.dataset.opt);
+    card.addEventListener('click', go);
+    card.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); go(); } });
+  });
+}
+
 function renderPanel(zone, openCatId) {
   document.getElementById('panelZoneTitle').textContent = zone.name;
   document.getElementById('panelZoneDesc').textContent = zone.desc;
-  document.getElementById('optionsPanel').querySelectorAll('.accordion-item').forEach(el => el.remove());
+  const panel = document.getElementById('optionsPanel');
+  panel.querySelectorAll('.accordion-item, .flat-cat-section').forEach(el => el.remove());
+
+  /* Single-category zone: show options flat, no accordion */
+  if (zone.categories.length === 1) {
+    const cat = zone.categories[0];
+    const section = document.createElement('div');
+    section.className = 'flat-cat-section';
+    section.innerHTML = `
+      <div class="flat-cat-header">
+        <span class="flat-cat-icon">${ICONS[cat.iconKey] || ''}</span>
+        <span class="flat-cat-title">${cat.name}</span>
+      </div>
+      <div class="opt-cards">${buildCardsHtml(cat)}</div>
+      ${buildFixtureNote(cat)}`;
+    panel.appendChild(section);
+    bindOptCards();
+    return;
+  }
 
   zone.categories.forEach((cat, idx) => {
     const isOpen = openCatId ? cat.id === openCatId : idx === 0;
@@ -780,28 +837,8 @@ function renderPanel(zone, openCatId) {
     item.className = 'accordion-item' + (isOpen ? ' open' : '');
     item.dataset.catId = cat.id;
 
-    const cardsHtml = cat.options.map(opt => {
-      const sel = opt.id === state.selections[cat.id];
-      const priceHtml = opt.price === 0
-        ? `<span class="opt-card-price included">Included</span>`
-        : `<span class="opt-card-price upgrade">+${fmt(opt.price)}</span>`;
-      return `<div class="opt-card${sel ? ' selected' : ''}"
-                   data-cat="${cat.id}" data-opt="${opt.id}"
-                   role="radio" aria-checked="${sel}" tabindex="0">
-        <div class="opt-card-header">
-          <span class="opt-card-name">${opt.name}</span>
-          <div class="opt-check"><div class="opt-check-dot"></div></div>
-        </div>
-        ${priceHtml}
-      </div>`;
-    }).join('');
-
-    /* Fixture note callout */
-    const fixtureNoteHtml = FIXTURE_CAT_IDS.includes(cat.id) ? `
-      <div class="fixture-note">
-        <span class="fixture-note-icon">${ICONS.info}</span>
-        <span class="fixture-note-text">The faucet and fixture finish you choose will be applied throughout the entire home — including bathroom, kitchen, kitchenette, and door handles — to ensure a consistent, cohesive look across all spaces.</span>
-      </div>` : '';
+    const cardsHtml = buildCardsHtml(cat);
+    const fixtureNoteHtml = buildFixtureNote(cat);
 
     item.innerHTML = `
       <div class="accordion-header" role="button" aria-expanded="${isOpen}" tabindex="0" data-cat="${cat.id}">
@@ -853,11 +890,7 @@ function bindPanelEvents() {
     hdr.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
   });
 
-  document.querySelectorAll('.opt-card').forEach(card => {
-    const go = () => selectOption(card.dataset.cat, card.dataset.opt);
-    card.addEventListener('click', go);
-    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
-  });
+  bindOptCards();
 }
 
 /* ── ZONE TABS ── */
@@ -926,6 +959,7 @@ function showToast(msg) {
   renderZoneTabs();
   document.getElementById('viewerBase').src = state.activeViewImage;
   document.getElementById('viewerZoneLabel').textContent = firstZone.name;
+  document.getElementById('houseViewer').classList.add('zone-' + firstZone.id);
   renderPanel(firstZone, firstCat ? firstCat.id : null);
   updatePriceBar();
 
