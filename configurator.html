@@ -470,31 +470,28 @@ const CONFIG_DATA = {
     /* 1 ── EXTERIOR ──────────────────────────────────────────── */
     {
       id: 'exterior', name: 'Exterior', iconKey: 'exterior',
-      desc: 'Choose the facade color, landscaping, roof finish, and wall treatment.',
-      baseImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-fachada-original.png',
+      desc: 'Customize the facade paint, landscaping, and roof finish.',
+      baseImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-Frente-con-plantas-alternativo.png',
       categories: [
         { id: 'landscaping', name: 'Landscaping', iconKey: 'landscape',
           options: [
-            { id: 'land-orig',   name: 'Original',    price: 0,    layerImage: null, default: true },
-            { id: 'land-plants', name: 'With Plants',  price: 1500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-Frente-con-plantas-alternativo.png' }
+            { id: 'land-orig',   name: 'Original',          price: 0,    layerImage: null, default: true },
+            { id: 'land-bushes', name: 'Arbustos / Bushes', price: 1500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/Exterior-arbustos-fachada.png' }
           ]
         },
         { id: 'roof-color', name: 'Roof Color', iconKey: 'roof',
           options: [
             { id: 'roof-orig',  name: 'Original', price: 0,    layerImage: null, default: true },
-            { id: 'roof-white', name: 'White',    price: 2500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-Techo-blanco-alternativo.png' }
+            { id: 'roof-gray',  name: 'Gray',     price: 2500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-techo-gris-alternativo.png' },
+            { id: 'roof-brown', name: 'Brown',    price: 2500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-techo-marron-alternativo.png' },
+            { id: 'roof-tan',   name: 'Tan',      price: 2500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-techo-tan-alternativo.png' }
           ]
         },
-        { id: 'wall-color-ext', name: 'Wall Color', iconKey: 'wall',
+        { id: 'facade-paint', name: 'Facade Paint', iconKey: 'paint',
           options: [
-            { id: 'wall-ext-orig', name: 'Original', price: 0, layerImage: null, default: true },
-            { id: 'wall-ext-gray', name: 'Gray',     price: 3000,
-              layerImages: [
-                'Configurator%20multimedia/Exterior%20Casa/exterior-Entrada-pared-gris.png',
-                'Configurator%20multimedia/Exterior%20Casa/exterior-Pared-dos%20-ventanas-gris%20alternativo.png',
-                'Configurator%20multimedia/Exterior%20Casa/exterior-Pared-Flex-space-gris.png'
-              ]
-            }
+            { id: 'paint-orig', name: 'Original', price: 0,    layerImage: null, default: true },
+            { id: 'paint-1',    name: 'Option 1', price: 3000, layerImage: 'Configurator%20multimedia/Exterior%20Casa/Exterior-fachada-pintura-1.png' },
+            { id: 'paint-2',    name: 'Option 2', price: 3000, layerImage: 'Configurator%20multimedia/Exterior%20Casa/Exterior-fachada-pintura-2.png.png' }
           ]
         }
       ]
