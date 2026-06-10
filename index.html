@@ -918,9 +918,25 @@
       .team-photo-wrap { height: 210px; }
       .floorplan-stats { justify-content: flex-start; }
     }
+    /* TRIAL BANNER */
+    .trial-banner {
+      background: #1c1a14; border-bottom: 1px solid rgba(205,139,44,.18);
+      padding: .42rem 2rem; text-align: center;
+      font-family: 'Montserrat', sans-serif; font-size: .685rem;
+      color: #777; letter-spacing: .025em; line-height: 1.5;
+    }
+    .trial-banner-inner { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+    .trial-banner-inner svg { flex-shrink: 0; color: #cd8b2c; }
   </style>
 </head>
 <body>
+
+<div class="trial-banner" role="note">
+  <div class="trial-banner-inner">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    This website is currently in a trial version, intended for informational or reference purposes.
+  </div>
+</div>
 
 <!-- ── NAV ── -->
 <nav class="nav" aria-label="Main navigation">

@@ -296,6 +296,19 @@
     .footer-links a { font-size: .75rem; color: #666; text-decoration: none; transition: color .15s; font-family: 'Montserrat', sans-serif; }
     .footer-links a:hover { color: #aaa; }
 
+    /* DISCOUNT PRICE */
+    .opt-card-price.discount { color: #3a8a7a; }
+
+    /* TRIAL BANNER */
+    .trial-banner {
+      background: #1c1a14; border-bottom: 1px solid rgba(205,139,44,.18);
+      padding: .42rem 2rem; text-align: center;
+      font-family: 'Montserrat', sans-serif; font-size: .685rem;
+      color: #777; letter-spacing: .025em; line-height: 1.5;
+    }
+    .trial-banner-inner { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+    .trial-banner-inner svg { flex-shrink: 0; color: var(--gold-4); }
+
     /* IMAGE PROTECTION */
     img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
 
@@ -316,6 +329,13 @@
   </style>
 </head>
 <body>
+
+<div class="trial-banner" role="note">
+  <div class="trial-banner-inner">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    This website is currently in a trial version, intended for informational or reference purposes.
+  </div>
+</div>
 
 <nav class="nav" aria-label="Main navigation">
   <a href="/index.html" class="nav-logo" aria-label="Avanza Homes homepage">
@@ -473,7 +493,7 @@ const CONFIG_DATA = {
       desc: 'Customize the facade paint, landscaping, and roof finish.',
       baseImage: 'Configurator%20multimedia/Exterior%20Casa/exterior-fachada-original.png',
       categories: [
-        { id: 'landscaping', name: 'Landscaping', iconKey: 'landscape',
+        { id: 'landscaping', name: 'Landscaping', iconKey: 'landscape', layerZIndex: 99,
           options: [
             { id: 'land-orig',   name: 'Original',          price: 0,    layerImage: null, default: true },
             { id: 'land-bushes', name: 'Arbustos / Bushes', price: 1500, layerImage: 'Configurator%20multimedia/Exterior%20Casa/Exterior-arbustos-fachada.png' }
@@ -488,6 +508,7 @@ const CONFIG_DATA = {
           ]
         },
         { id: 'facade-paint', name: 'Facade Paint', iconKey: 'paint',
+          catNote: "We use Lowe's Sherwin-Williams paint for all facade finishes.",
           options: [
             { id: 'paint-orig', name: 'Original', price: 0,    layerImage: null, default: true },
             { id: 'paint-1',    name: 'Option 1', price: 3000, layerImage: 'Configurator%20multimedia/Exterior%20Casa/Exterior-fachada-pintura-1.png' },
@@ -526,7 +547,7 @@ const CONFIG_DATA = {
         { id: 'faucet', name: 'Faucet & Fixtures', iconKey: 'faucet', fixtureCategory: true,
           options: [
             { id: 'faucet-orig',   name: 'Original',        price: 0,   layerImage: null, default: true },
-            { id: 'faucet-silver', name: 'Plateado Cromado / Chrome', price: 1500, layerImage: 'Configurator%20multimedia/Cocina/cocina-griferia-alternativa-plateada.png' }
+            { id: 'faucet-silver', name: 'Chrome Silver', price: 1500, layerImage: 'Configurator%20multimedia/Cocina/cocina-griferia-alternativa-plateada.png' }
           ]
         }
       ]
@@ -555,7 +576,7 @@ const CONFIG_DATA = {
         { id: 'bathroom-fixtures', name: 'Faucet & Fixtures', iconKey: 'faucet', fixtureCategory: true,
           options: [
             { id: 'bath-fix-orig',   name: 'Original',        price: 0, layerImage: null, default: true },
-            { id: 'bath-fix-silver', name: 'Plateado Cromado / Chrome', price: 0, layerImage: 'Configurator%20multimedia/Ba%C3%B1o/Ba%C3%B1o-Manillas-grifos-plateados-alternativo.png' }
+            { id: 'bath-fix-silver', name: 'Chrome Silver', price: 0, layerImage: 'Configurator%20multimedia/Ba%C3%B1o/Ba%C3%B1o-Manillas-grifos-plateados-alternativo.png' }
           ]
         }
       ]
@@ -569,15 +590,16 @@ const CONFIG_DATA = {
         { id: 'connection', name: 'Connection to Main House', iconKey: 'link',
           baseImage: 'Configurator%20multimedia/Flex%20space/flex-puerta-conectada%20(1).png',
           options: [
-            { id: 'conn-connected', name: 'Connected',   price: 0,    layerImage: null, default: true },
-            { id: 'conn-sealed',    name: 'Sealed Wall', price: 2500, layerImage: 'Configurator%20multimedia/Flex%20space/flex-pared-sellada%20(1).png' }
+            { id: 'conn-connected',     name: 'Connected',            price: 0,    layerImage: null, default: true },
+            { id: 'conn-sealed',        name: 'Sealed Wall',          price: -150, layerImage: 'Configurator%20multimedia/Flex%20space/flex-pared-sellada%20(1).png' },
+            { id: 'conn-exterior-door', name: 'Sealed Exterior Door', price: -300, layerImage: 'Configurator%20multimedia/Flex%20space/Flex-puerta-exterior-sellada.png' }
           ]
         },
         { id: 'closet-type', name: 'Closet / Kitchenette', iconKey: 'closet',
-          baseImage: 'Configurator%20multimedia/Flex%20space/flex-closet-original.png',
+          baseImage: 'Configurator%20multimedia/Flex%20space/flex-closet-original%20(1).png',
           options: [
             { id: 'closet-walkin',      name: 'Walk-in Closet', price: 0,    layerImage: null, default: true },
-            { id: 'closet-kitchenette', name: 'Kitchenette',    price: 5500, layerImage: 'Configurator%20multimedia/Flex%20space/flex-kitchenette%20(1).png' }
+            { id: 'closet-kitchenette', name: 'Kitchenette',    price: 5500, layerImage: 'Configurator%20multimedia/Flex%20space/Flex-kitchennette.png' }
           ]
         }
       ]
@@ -595,6 +617,7 @@ CONFIG_DATA.zones.forEach(z => z.categories.forEach(c => {
 
 /* ── HELPERS ── */
 const fmt = n => '$' + n.toLocaleString('en-US');
+const fmtDelta = p => p > 0 ? '+' + fmt(p) : (p < 0 ? '−' + fmt(Math.abs(p)) : '+$0');
 const getZone = id => CONFIG_DATA.zones.find(z => z.id === id);
 const getActiveZone = () => getZone(state.activeZone);
 const findCatById = id => { for (const z of CONFIG_DATA.zones) { const c = z.categories.find(c => c.id === id); if (c) return c; } return null; };
@@ -636,12 +659,12 @@ function updatePriceBar() {
   const total = CONFIG_DATA.model.basePrice + up;
   animatePrice(state.totalPrice, total);
   state.totalPrice = total;
-  document.getElementById('priceUpgrades').textContent = up === 0 ? 'Upgrades: +$0' : 'Upgrades: +' + fmt(up);
+  document.getElementById('priceUpgrades').textContent = 'Upgrades: ' + fmtDelta(up);
   /* zone upgrade badge on viewer */
   const zUp = zoneUpgrades(state.activeZone);
   const badge = document.getElementById('upgradeBadge');
-  badge.textContent = '+' + fmt(zUp) + ' in this room';
-  badge.classList.toggle('show', zUp > 0);
+  badge.textContent = fmtDelta(zUp) + ' in this room';
+  badge.classList.toggle('show', zUp !== 0);
   updateZoneChips();
 }
 
@@ -650,7 +673,7 @@ function updateZoneChips() {
   document.getElementById('zoneChips').innerHTML = CONFIG_DATA.zones.map(z => {
     const up = zoneUpgrades(z.id);
     const cls = up > 0 ? 'zone-chip upgraded' : 'zone-chip';
-    return `<span class="${cls}">${ICONS[z.iconKey] || ''} ${z.name}${up > 0 ? ' +' + fmt(up) : ''}</span>`;
+    return `<span class="${cls}">${ICONS[z.iconKey] || ''} ${z.name}${up !== 0 ? ' ' + fmtDelta(up) : ''}</span>`;
   }).join('');
 }
 
@@ -685,6 +708,7 @@ function updateViewerLayers() {
       img.className = 'viewer-layer';
       img.src = src; img.alt = '';
       img.style.opacity = '0';
+      if (cat.layerZIndex) img.style.zIndex = cat.layerZIndex;
       shell.appendChild(img);
       requestAnimationFrame(() => requestAnimationFrame(() => { img.style.opacity = '1'; }));
     });
@@ -757,9 +781,9 @@ function selectOption(catId, optId) {
     const opt = cat && cat.options.find(o => o.id === optId);
     if (opt) {
       const selEl = hdr.querySelector('.accordion-sel');
-      const up = opt.price > 0;
-      selEl.textContent = up ? opt.name + ' (+' + fmt(opt.price) + ')' : opt.name;
-      selEl.classList.toggle('upgraded', up);
+      const up = opt.price !== 0;
+      selEl.textContent = up ? opt.name + ' (' + fmtDelta(opt.price) + ')' : opt.name;
+      selEl.classList.toggle('upgraded', opt.price > 0);
     }
   }
 
@@ -773,7 +797,9 @@ function buildCardsHtml(cat) {
     const sel = opt.id === state.selections[cat.id];
     const priceHtml = opt.price === 0
       ? `<span class="opt-card-price included">Included</span>`
-      : `<span class="opt-card-price upgrade">+${fmt(opt.price)}</span>`;
+      : opt.price > 0
+        ? `<span class="opt-card-price upgrade">+${fmt(opt.price)}</span>`
+        : `<span class="opt-card-price discount">−${fmt(Math.abs(opt.price))}</span>`;
     return `<div class="opt-card${sel ? ' selected' : ''}"
                  data-cat="${cat.id}" data-opt="${opt.id}"
                  role="radio" aria-checked="${sel}" tabindex="0">
@@ -791,6 +817,14 @@ function buildFixtureNote(cat) {
   return `<div class="fixture-note">
     <span class="fixture-note-icon">${ICONS.info}</span>
     <span class="fixture-note-text">The faucet and fixture finish you choose will be applied throughout the entire home — including bathroom, kitchen, kitchenette, and door handles — to ensure a consistent, cohesive look across all spaces.</span>
+  </div>`;
+}
+
+function buildCatNote(cat) {
+  if (!cat.catNote) return '';
+  return `<div class="fixture-note" style="margin-top:.875rem">
+    <span class="fixture-note-icon">${ICONS.info}</span>
+    <span class="fixture-note-text">${cat.catNote}</span>
   </div>`;
 }
 
@@ -819,7 +853,7 @@ function renderPanel(zone, openCatId) {
         <span class="flat-cat-title">${cat.name}</span>
       </div>
       <div class="opt-cards">${buildCardsHtml(cat)}</div>
-      ${buildFixtureNote(cat)}`;
+      ${buildFixtureNote(cat)}${buildCatNote(cat)}`;
     panel.appendChild(section);
     bindOptCards();
     return;
@@ -828,7 +862,7 @@ function renderPanel(zone, openCatId) {
   zone.categories.forEach((cat, idx) => {
     const isOpen = openCatId ? cat.id === openCatId : idx === 0;
     const selOpt = cat.options.find(o => o.id === state.selections[cat.id]);
-    const isUp = selOpt && selOpt.price > 0;
+    const isUp = selOpt && selOpt.price !== 0;
 
     const item = document.createElement('div');
     item.className = 'accordion-item' + (isOpen ? ' open' : '');
@@ -836,18 +870,19 @@ function renderPanel(zone, openCatId) {
 
     const cardsHtml = buildCardsHtml(cat);
     const fixtureNoteHtml = buildFixtureNote(cat);
+    const catNoteHtml = buildCatNote(cat);
 
     item.innerHTML = `
       <div class="accordion-header" role="button" aria-expanded="${isOpen}" tabindex="0" data-cat="${cat.id}">
         <span class="accordion-icon">${ICONS[cat.iconKey] || ''}</span>
         <span class="accordion-title">${cat.name}</span>
-        <span class="accordion-sel${isUp ? ' upgraded' : ''}">${selOpt ? (isUp ? selOpt.name + ' (+' + fmt(selOpt.price) + ')' : selOpt.name) : ''}</span>
+        <span class="accordion-sel${isUp && selOpt.price > 0 ? ' upgraded' : ''}">${selOpt ? (isUp ? selOpt.name + ' (' + fmtDelta(selOpt.price) + ')' : selOpt.name) : ''}</span>
         <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="accordion-body">
         <div class="accordion-body-inner">
           <div class="opt-cards">${cardsHtml}</div>
-          ${fixtureNoteHtml}
+          ${fixtureNoteHtml}${catNoteHtml}
         </div>
       </div>`;
 
@@ -911,9 +946,11 @@ function buildModalSummary() {
     z.categories.forEach(c => {
       const opt = c.options.find(o => o.id === state.selections[c.id]);
       if (!opt) return;
-      const pHtml = opt.price > 0
-        ? ` <span style="color:var(--gold-4)">+${fmt(opt.price)}</span>`
-        : ` <span style="color:#5a9a5a">Included</span>`;
+      const pHtml = opt.price === 0
+        ? ` <span style="color:#5a9a5a">Included</span>`
+        : opt.price > 0
+          ? ` <span style="color:var(--gold-4)">+${fmt(opt.price)}</span>`
+          : ` <span style="color:#3a8a7a">−${fmt(Math.abs(opt.price))}</span>`;
       html += `<div class="summary-row"><span>${c.name}</span><strong>${opt.name}${pHtml}</strong></div>`;
     });
   });
