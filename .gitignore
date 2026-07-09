@@ -1,3 +1,6 @@
 node_modules/
 temporary screenshots/
 Brand multimedia/front exterior.mp4
+
+.vercel
+.env*
