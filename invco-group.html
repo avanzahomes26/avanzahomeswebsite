@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ── FAVICON ── -->
+  <link rel="icon" type="image/png" href="/avanzahomes-favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/avanzahomes-favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/avanzahomes-favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/avanzahomes-favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Avanza Homes" />
+  <link rel="manifest" href="/avanzahomes-favicon/site.webmanifest" />
+
+  <title>INVCO Group | The Parent Company Behind Avanza Homes</title>
+  <meta name="description" content="INVCO Group (Investment Construction LLC) is the Florida-based parent construction and development company behind Avanza Homes. Founded in 2016 in Maitland, FL. 450+ families served, 350+ lots developed across seven Florida markets.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Avanza Homes">
+  <link rel="canonical" href="https://avanza.homes/invco-group">
+
+  <meta property="og:title" content="INVCO Group | The Foundation of Everything We Build">
+  <meta property="og:description" content="Florida construction and development company. Founded 2016. The licensed constructor behind Avanza Homes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avanza.homes/invco-group">
+  <meta property="og:site_name" content="Avanza Homes">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold-1: #fdf8ef;
+      --gold-2: #f5e3c0;
+      --gold-3: #deb96a;
+      --gold-4: #cd8b2c;
+      --gold-5: #a36b1a;
+      --cream: #f6f6f1;
+      --ink: #161616;
+      --body-text: #666;
+      --muted: #888;
+      --faint: #999;
+      --line: #e8e8e8;
+      --dark: #161616;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--body-text);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; letter-spacing: -0.02em; color: var(--ink); }
+    em { font-style: italic; color: var(--gold-4); }
+    a { color: inherit; }
+    img { max-width: 100%; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #f0f0f0;
+      padding: 0 2rem;
+      height: 78px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; height: 78px; text-decoration: none; }
+    .nav-logo img { height: 30px; width: auto; display: block; }
+    .nav-logo-divider { width: 1px; height: 20px; background: var(--line); }
+    .nav-logo-sub { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--body-text); letter-spacing: 0.02em; }
+    .nav-logo-invco { height: 30px; width: auto; display: block; border-radius: 6px; }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8125rem; font-weight: 600; color: var(--body-text);
+      text-decoration: none; letter-spacing: 0.01em;
+      padding: 0.55rem 1.1rem; border-radius: 8px;
+      border: 1.5px solid var(--line);
+      transition: border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+    .nav-back:hover { border-color: var(--gold-4); color: var(--gold-5); transform: translateY(-1px); }
+    .nav-back:active { transform: translateY(0); }
+    .nav-back:focus-visible { outline: 2px solid var(--gold-3); outline-offset: 2px; }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex; align-items: flex-end;
+      padding: 8rem 2rem 4.5rem;
+      overflow: hidden;
+    }
+    .hero-media { position: absolute; inset: 0; z-index: 0; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+    .hero-media-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(22,18,12,0.35) 0%, rgba(22,18,12,0.25) 40%, rgba(22,18,12,0.92) 100%);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 45% at 15% 100%, rgba(232,200,122,0.24) 0%, transparent 60%);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 740px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(205,139,44,0.16); border: 1px solid rgba(205,139,44,0.4);
+      color: var(--gold-2); font-size: 0.75rem; font-weight: 600;
+      padding: 0.4rem 0.9rem; border-radius: 999px;
+      margin-bottom: 1.5rem; letter-spacing: 0.04em;
+    }
+    .hero-eyebrow .badge-dot { width: 6px; height: 6px; background: var(--gold-3); border-radius: 50%; display: inline-block; }
+    .hero h1 { color: #fff; font-size: clamp(2.4rem, 5.4vw, 4rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+    .hero-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.86); line-height: 1.7; max-width: 600px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--dark);
+      padding: 3rem 2rem;
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0;
+    }
+    .stat-item { text-align: center; padding: 0 2.25rem; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 800; color: var(--gold-3); line-height: 1.1; margin-bottom: 0.3rem;
+    }
+    .stat-label { font-size: 0.75rem; color: #999; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6.5rem 2rem; background: #fff; }
+    .section-alt { background: var(--cream); }
+    .section-center { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 700; color: var(--gold-4);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1rem;
+    }
+    .section h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); font-weight: 800; line-height: 1.2; }
+    .section-sub { font-size: 1rem; color: var(--body-text); line-height: 1.7; margin-top: 1.1rem; }
+
+    /* ── STORY ── */
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 0.85fr; gap: 4rem;
+      max-width: 1100px; margin: 0 auto; align-items: center;
+    }
+    .story-copy p { font-size: 0.95rem; line-height: 1.85; color: var(--body-text); margin-bottom: 1.25rem; }
+    .story-copy p:last-child { margin-bottom: 0; }
+    .story-copy p strong { color: var(--ink); font-weight: 600; }
+    .story-img-wrap {
+      position: relative; border-radius: 18px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 14px rgba(205,139,44,0.14);
+    }
+    .story-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .story-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(14,14,14,0.35) 0%, transparent 45%);
+      mix-blend-mode: multiply;
+    }
+    .story-img-tag {
+      position: absolute; top: 1rem; left: 1rem; z-index: 2;
+      background: var(--gold-4); color: #fff;
+      font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.35rem 0.8rem; border-radius: 999px;
+    }
+
+    /* ── STORY COLLAGE (3-photo mosaic) ── */
+    .story-collage {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 14px rgba(205,139,44,0.14);
+      background: #fff;
+    }
+    .story-collage-main { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    .story-collage-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .story-collage-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .story-collage-thumb { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 10px; }
+    .story-collage-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .story-collage-main::after, .story-collage-thumb::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(14,14,14,0.32) 0%, transparent 45%);
+      mix-blend-mode: multiply;
+    }
+
+    /* ── FEATURE CARDS (What We Do) ── */
+    .features-grid-4 {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      max-width: 1140px; margin: 0 auto;
+    }
+    .feature-card {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(205,139,44,0.35); box-shadow: 0 16px 40px rgba(205,139,44,0.12); }
+    .feature-card-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+    .feature-card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .feature-card:hover .feature-card-img img { transform: scale(1.06); }
+    .feature-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(20,16,10,0.5) 100%);
+    }
+    .feature-icon {
+      position: relative; z-index: 2; margin: -24px 0 0 1.25rem;
+      width: 46px; height: 46px; border-radius: 12px;
+      background: #fff; border: 1px solid var(--gold-2);
+      box-shadow: 0 4px 14px rgba(205,139,44,0.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-card-body { padding: 0.75rem 1.6rem 1.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin: 0.85rem 0 0.6rem; color: var(--ink); }
+    .feature-card p { font-size: 0.83rem; line-height: 1.65; color: var(--muted); }
+
+    /* ── WHERE WE BUILD ── */
+    .markets-pills {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      max-width: 1000px; margin: 0 auto 3rem;
+    }
+    .market-pill {
+      display: flex; align-items: center; gap: 1rem;
+      background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.35rem 1.5rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .market-pill:hover { transform: translateY(-3px); border-color: rgba(205,139,44,0.35); box-shadow: 0 12px 32px rgba(205,139,44,0.1); }
+    .market-pill-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: var(--gold-1); border: 1px solid var(--gold-2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .market-pill-name { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .market-pill-tag { font-size: 0.68rem; color: var(--gold-5); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 0.1rem; }
+    .past-projects {
+      max-width: 760px; margin: 0 auto; text-align: center;
+      padding-top: 2.5rem; border-top: 1px solid var(--line);
+    }
+    .past-projects p { font-size: 0.875rem; line-height: 1.75; color: var(--muted); }
+    .past-projects strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BRAND SPLIT (Avanza Homes) ── */
+    .brand-split {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 0.85fr 1fr; gap: 4rem; align-items: center;
+    }
+    .brand-split-logo {
+      background: var(--dark); border-radius: 20px; padding: 3.5rem 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+    }
+    .brand-split-logo img { width: 100%; max-width: 220px; height: auto; display: block; }
+    .brand-split-content h2 { margin-bottom: 1.25rem; }
+    .brand-split-content p { font-size: 0.95rem; line-height: 1.8; color: var(--body-text); margin-bottom: 1.5rem; }
+    .brand-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700;
+      color: var(--gold-4); text-decoration: none;
+      transition: gap 0.2s, color 0.15s;
+    }
+    .brand-link:hover { gap: 0.75rem; color: var(--gold-5); }
+    .brand-link:focus-visible { outline: 2px solid var(--gold-3); outline-offset: 3px; }
+    .brand-link svg { transition: transform 0.2s; }
+    .brand-link:hover svg { transform: translateX(2px); }
+
+    /* ── TEAM ── */
+    .team-track-wrap { position: relative; overflow: hidden; max-width: 1060px; margin: 0 auto; }
+    .team-track {
+      display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+      scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem; scrollbar-width: none;
+    }
+    .team-track::-webkit-scrollbar { display: none; }
+    .team-card { scroll-snap-align: start; flex-shrink: 0; border-radius: 16px; overflow: hidden; }
+    .team-card-featured {
+      width: 240px; min-height: 340px;
+      background: linear-gradient(145deg, #deb96a, #cd8b2c);
+      padding: 2rem 1.5rem; display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .team-featured-name { font-family: 'Poppins', sans-serif; font-size: 1.125rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+    .team-featured-role { font-size: 0.75rem; color: rgba(255,255,255,0.8); font-weight: 500; margin-bottom: 1rem; letter-spacing: 0.04em; }
+    .team-featured-bio { font-size: 0.78rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+    .team-card-photo { width: 200px; background: #fafafa; border: 1px solid #f0f0f0; }
+    .team-photo-wrap { height: 270px; overflow: hidden; position: relative; }
+    .team-photo-wrap::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; display: block; }
+    .team-card-name { font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 600; color: var(--ink); padding: 1.1rem 1rem 0.15rem; }
+    .team-card-role { font-size: 0.72rem; color: var(--gold-4); font-weight: 500; padding: 0 1rem 1.25rem; }
+    .team-nav { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; }
+    .team-nav-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--dark); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; transition: background 0.15s;
+    }
+    .team-nav-btn:hover { background: var(--gold-4); }
+    .team-nav-btn:focus-visible { outline: 2px solid var(--gold-3); outline-offset: 2px; }
+
+    /* ── CREDENTIALS ── */
+    .credentials-card {
+      max-width: 760px; margin: 0 auto;
+      background: #fff; border: 1px solid var(--line); border-radius: 18px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .credential-row {
+      display: grid; grid-template-columns: 220px 1fr; gap: 1rem;
+      padding: 1.1rem 2rem; border-bottom: 1px solid #f2f2f2;
+    }
+    .credential-row:last-child { border-bottom: none; }
+    .credential-label {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+      color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center;
+    }
+    .credential-value { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      max-width: 760px; margin: 0 auto;
+    }
+    .contact-block h4 {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+      color: var(--gold-4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .contact-block p { font-size: 0.9rem; color: var(--body-text); line-height: 1.7; }
+    .contact-block a {
+      display: block; font-size: 0.9rem; color: var(--body-text); text-decoration: none;
+      line-height: 1.9; transition: color 0.15s;
+    }
+    .contact-block a:hover { color: var(--gold-4); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--dark); padding: 3rem 2rem 2rem; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      max-width: 1100px; margin: 0 auto 2.5rem; gap: 2rem; flex-wrap: wrap;
+    }
+    .footer-logo img { height: 24px; width: auto; display: block; margin-bottom: 0.75rem; }
+    .footer-tagline { font-size: 0.8rem; color: #888; line-height: 1.6; max-width: 340px; }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.8125rem; color: #999; text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--gold-3); }
+    .footer-bottom {
+      border-top: 1px solid #242424; padding-top: 1.5rem;
+      max-width: 1100px; margin: 0 auto; text-align: center;
+    }
+    .footer-copy { font-size: 0.75rem; color: #666; display: block; }
+    .footer-sub { font-size: 0.72rem; color: #4d4d4d; margin-top: 0.5rem; display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      .features-grid-4 { grid-template-columns: 1fr 1fr; }
+      .markets-pills { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 860px) {
+      .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story-img-wrap { order: -1; }
+      .brand-split { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .brand-split-logo { padding: 2.5rem; }
+      .brand-link { justify-content: center; }
+      .stat-item { padding: 0 1.25rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .nav { padding: 0 1.25rem; height: 66px; }
+      .nav-logo img { height: 24px; }
+      .nav-logo-sub { display: none; }
+      .nav-back span { display: none; }
+      .nav-back { padding: 0.55rem 0.7rem; }
+      .hero { padding: 6.5rem 1.25rem 3.5rem; min-height: 82vh; }
+      .section { padding: 4.5rem 1.25rem; }
+      .section h2 { font-size: clamp(1.6rem, 6vw, 2.25rem); }
+      .stats-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1rem; padding: 2rem 1.25rem; }
+      .stat-item { border-right: none; padding: 0; }
+      .stat-item:nth-child(5) { grid-column: 1 / -1; }
+      .features-grid-4 { grid-template-columns: 1fr; }
+      .markets-pills { grid-template-columns: 1fr; }
+      .credential-row { grid-template-columns: 1fr; gap: 0.35rem; padding: 1rem 1.25rem; }
+      .footer-top { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: 0.9rem; }
+      .team-card-featured { width: 200px; min-height: 280px; }
+      .team-card-photo { width: 160px; }
+      .team-photo-wrap { height: 210px; }
+    }
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-eyebrow { font-size: 0.68rem; padding: 0.35rem 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" aria-label="Main navigation">
+  <a href="/index.html" class="nav-logo" aria-label="Avanza Homes homepage">
+    <img src="brand_assets/Copy%20of%20Avanza%20Homes%20Logo%20Positivo.png" alt="Avanza Homes logo" width="140" height="24">
+    <span class="nav-logo-divider"></span>
+    <img class="nav-logo-invco" src="Invco-group%20multimedia/Invco-Group-logo.png" alt="INVCO Group logo">
+  </a>
+  <a href="/index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12,19 5,12 12,5"/></svg>
+    <span>Back to avanza.homes</span>
+  </a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+  <div class="hero-media">
+    <img src="Brand%20multimedia/Flex%20Space%20finished%201.jpg" alt="A completed Avanza Homes FlexSpace property built by INVCO Group in Florida" fetchpriority="high" decoding="sync">
+    <div class="hero-media-overlay"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="badge-dot"></span>The Parent Company Behind Avanza Homes</div>
+    <h1 id="hero-heading">INVCO Group. <em>The Foundation of Everything We Build.</em></h1>
+    <p class="hero-sub">A Florida-based construction and development company founded in 2016. The licensed constructor behind every Avanza Homes project, and the origin of a story that started with two people and a vision.</p>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar" aria-label="Track record">
+  <div class="stat-item"><div class="stat-val">450+</div><div class="stat-label">Families Served</div></div>
+  <div class="stat-item"><div class="stat-val">100+</div><div class="stat-label">Properties Bought &amp; Sold</div></div>
+  <div class="stat-item"><div class="stat-val">350+</div><div class="stat-label">Lots Developed</div></div>
+  <div class="stat-item"><div class="stat-val">10+</div><div class="stat-label">Years in Business</div></div>
+  <div class="stat-item"><div class="stat-val">2016</div><div class="stat-label">Founded</div></div>
+</div>
+
+<!-- ── THE STORY ── -->
+<section class="section" aria-labelledby="story-heading">
+  <div class="story-grid">
+    <div>
+      <p class="section-eyebrow">Our Origin</p>
+      <h2 id="story-heading" style="margin-bottom:1.5rem;">Every Empire Starts <em>in a Garage.</em></h2>
+      <div class="story-copy">
+        <p>INVCO Group didn't start as a company. It started as a decision.</p>
+        <p>In 2016, Anderson Lizarazo and his wife made a bet, the kind of bet you only make when you believe in something more than the risk it carries. They founded Investment Construction LLC in Florida, walked away from the safe path, and started building.</p>
+        <p>The first projects were in Washington State. Small. Unproven. The kind of jobs that don't make it into portfolios, but the kind that teach you everything.</p>
+        <p>From there, they moved deeper into Florida. Umatilla. Fruitland Park. Fort Meade. Cobb. DeLand. Every project taught them something new: how to acquire land, how to entitle it, how to build it, how to sell it. And every project, they got better.</p>
+        <p>That's how INVCO Group grew. Not through a marketing plan. Not through venture capital. Through the same thing that built every real company in history, showing up, taking the hit, and doing it better the next time.</p>
+        <p>Today, INVCO Group is a full-service construction and development company operating across Florida, with active projects in Charlotte County, North Port, Highlands County (Sebring), Citrus County, Palm Bay, and Kissimmee. It has served over <strong>450 families</strong>, executed <strong>100+ property transactions</strong>, and developed <strong>350+ lots</strong>.</p>
+        <p>Avanza Homes, the brand most people know us by, was born from INVCO Group. So was the mentorship. So was the conference. So was everything.</p>
+        <p>But it all started with two people who decided to build.</p>
+      </div>
+    </div>
+    <div class="story-collage">
+      <div class="story-collage-main">
+        <span class="story-img-tag">The Early Days</span>
+        <img src="Invco-group%20multimedia/invco-group-past.JPG" alt="Anderson Lizarazo's early Investment Construction paperwork and first business materials">
+      </div>
+      <div class="story-collage-bottom">
+        <div class="story-collage-thumb">
+          <img src="Invco-group%20multimedia/Invco-group-past%20(2).JPG" alt="An early INVCO Group foundation being poured on a Washington State lot">
+        </div>
+        <div class="story-collage-thumb">
+          <img src="Brand%20multimedia/Construction%20site%202.jpg" alt="An early INVCO Group project under construction, framing stage">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT WE DO ── -->
+<section class="section section-alt" aria-labelledby="whatwedo-heading">
+  <div class="section-center">
+    <h2 id="whatwedo-heading">A Full-Service <em>Construction &amp; Development Group.</em></h2>
+    <p class="section-sub">INVCO Group is more than a builder. We handle the full lifecycle of real estate development, from raw land to finished home.</p>
+  </div>
+  <div class="features-grid-4">
+    <div class="feature-card">
+      <div class="feature-card-img"><img src="Invco-group%20multimedia/Land-development-project.jpeg" alt="A raw land parcel INVCO Group is preparing for entitlement and development"></div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="1,6 1,22 8,18 16,22 23,18 23,2 16,6 8,2"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+      <div class="feature-card-body">
+        <h3>Land Development</h3>
+        <p>Acquisition, entitlement, subdivision, and infrastructure. We take raw land and prepare it for construction, the invisible work that determines whether a project ever gets built.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-img"><img src="Invco-group%20multimedia/New-construction-House.jfif" alt="A new construction home built by INVCO Group, framing and roof stage"></div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+      <div class="feature-card-body">
+        <h3>New Construction</h3>
+        <p>Single-family, multi-family, and mixed-use construction across Florida. Currently our primary focus, with active projects in seven markets.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-img"><img src="Invco-group%20multimedia/Comercial-project.jpeg" alt="An INVCO Group commercial construction project, aerial view"></div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 7V4a1 1 0 011-1h6a1 1 0 011 1v3"/><line x1="3" y1="13" x2="21" y2="13"/></svg></div>
+      <div class="feature-card-body">
+        <h3>Commercial Projects</h3>
+        <p>Commercial construction alongside our residential portfolio, applying the same standards of execution and delivery.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-img"><img src="Brand%20multimedia/Construction%20site%201.png" alt="INVCO Group's construction team managing an active build on site"></div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v2a1 1 0 001 1h4a1 1 0 001-1V3"/><path d="M8 12h8M8 16h5"/></svg></div>
+      <div class="feature-card-body">
+        <h3>Project Management</h3>
+        <p>End-to-end oversight of every build: permits, contractors, timeline, budget, quality. Full control from breaking ground to certificate of occupancy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHERE WE BUILD ── -->
+<section class="section" aria-labelledby="wherewebuild-heading">
+  <div class="section-center">
+    <h2 id="wherewebuild-heading">Rooted in Florida. <em>Built for Growth.</em></h2>
+    <p class="section-sub">INVCO Group is headquartered in Maitland, Florida, with active construction projects across seven high-growth Florida markets.</p>
+  </div>
+  <div class="markets-pills">
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">Charlotte County</div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">North Port</div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">Highlands County <span style="font-weight:400;color:var(--muted);">(Sebring)</span></div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">Citrus County</div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">Palm Bay</div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+    <div class="market-pill">
+      <div class="market-pill-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cd8b2c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div><div class="market-pill-name">Kissimmee</div><div class="market-pill-tag">Active Market</div></div>
+    </div>
+  </div>
+  <div class="past-projects">
+    <p><strong>Previous developments</strong> across Florida include Umatilla, Fruitland Park, Fort Meade, Cobb, and DeLand. Our first projects were completed in Washington State before establishing our Florida headquarters.</p>
+  </div>
+</section>
+
+<!-- ── OUR BRAND: AVANZA HOMES ── -->
+<section class="section section-alt" aria-labelledby="brand-heading">
+  <div class="brand-split">
+    <div class="brand-split-logo">
+      <img src="brand_assets/Copy%20of%20Avanza%20Homes%20Logo%20Negativo.png" alt="Avanza Homes logo">
+    </div>
+    <div class="brand-split-content">
+      <p class="section-eyebrow">Our Brand</p>
+      <h2 id="brand-heading">The Brand You Know. <em>Avanza Homes.</em></h2>
+      <p>Avanza Homes is the residential brand of INVCO Group, the name behind every home we deliver to families across Florida. If you've heard of Avanza, you've heard of us. The homes, the communities, the mentorship program, the annual conference, all of it is built and delivered by the team at INVCO Group.</p>
+      <a href="/index.html" class="brand-link">Visit avanza.homes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEADERSHIP ── -->
+<section class="section" id="team" aria-labelledby="team-heading">
+  <div class="section-center">
+    <p class="section-eyebrow">Our People</p>
+    <h2 id="team-heading">The Team Behind <em>INVCO Group.</em></h2>
+    <p class="section-sub">The same team building every Avanza Homes project. Led by our founder and CEO.</p>
+  </div>
+  <div class="team-track-wrap">
+    <div class="team-track" id="teamTrack">
+      <div class="team-card team-card-featured">
+        <div class="team-featured-name">Anderson Lizarazo</div>
+        <div class="team-featured-role">Founder &amp; CEO</div>
+        <p class="team-featured-bio">Real estate developer and investor. Founded INVCO Group in 2016 alongside his wife. Featured speaker at multiple real estate conferences nationwide and host of the annual Avanza Conference (700+ attendees).</p>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Anderson%20Lizarazo.jpeg" alt="Anderson Lizarazo, Founder &amp; CEO, INVCO Group"></div>
+        <div class="team-card-name">Anderson Lizarazo</div>
+        <div class="team-card-role">Founder &amp; CEO</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Lucero%20Mora.jpeg" alt="Lucero Mora, CFO, INVCO Group"></div>
+        <div class="team-card-name">Lucero Mora</div>
+        <div class="team-card-role">CFO</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Nathaly%20Lizarazo.jpeg" alt="Nathaly Lizarazo, Head of Property Management"></div>
+        <div class="team-card-name">Nathaly Lizarazo</div>
+        <div class="team-card-role">Head of Property Management</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Jose%20Level.png" alt="Jose Level, Construction Manager, INVCO Group"></div>
+        <div class="team-card-name">Jose Level</div>
+        <div class="team-card-role">Construction Manager</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Beatriz%20Otaiza.webp" alt="Beatriz Otaiza, Marketing Director, INVCO Group"></div>
+        <div class="team-card-name">Beatriz Otaiza</div>
+        <div class="team-card-role">Marketing Director</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Oriana%20Sanchez.webp" alt="Oriana Sanchez, Permitting Specialist, INVCO Group"></div>
+        <div class="team-card-name">Oriana Sanchez</div>
+        <div class="team-card-role">Permitting Specialist</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Alexis%20Garcia.webp" alt="Alexis Garcia, Underwriting Specialist, INVCO Group"></div>
+        <div class="team-card-name">Alexis Garcia</div>
+        <div class="team-card-role">Underwriting Specialist</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Yaddiel%20Garcia.png" alt="Yadiel Garcia, Underwriting Specialist, INVCO Group"></div>
+        <div class="team-card-name">Yadiel Garcia</div>
+        <div class="team-card-role">Underwriting Specialist</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Jesus%20Flores.png" alt="Jesus Flores, Loan Processor, INVCO Group"></div>
+        <div class="team-card-name">Jesus Flores</div>
+        <div class="team-card-role">Loan Processor</div>
+      </div>
+      <div class="team-card team-card-photo">
+        <div class="team-photo-wrap"><img src="Brand%20multimedia/Juan%20Faria.webp" alt="Juan Faria, Social Media Manager, INVCO Group"></div>
+        <div class="team-card-name">Juan Faria</div>
+        <div class="team-card-role">Social Media Manager</div>
+      </div>
+    </div>
+    <div class="team-nav">
+      <button class="team-nav-btn" id="teamPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15,18 9,12 15,6"/></svg></button>
+      <button class="team-nav-btn" id="teamNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9,18 15,12 9,6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ── -->
+<section class="section section-alt" aria-labelledby="credentials-heading">
+  <div class="section-center">
+    <h2 id="credentials-heading">Licensed. Bonded. <em>Built to Last.</em></h2>
+  </div>
+  <div class="credentials-card">
+    <div class="credential-row"><div class="credential-label">Legal Entity</div><div class="credential-value">Investment Construction LLC</div></div>
+    <div class="credential-row"><div class="credential-label">Founded</div><div class="credential-value">2016</div></div>
+    <div class="credential-row"><div class="credential-label">Headquarters</div><div class="credential-value">2400 Maitland Center Parkway, Maitland, FL 32751</div></div>
+    <div class="credential-row"><div class="credential-label">State of Operation</div><div class="credential-value">Florida</div></div>
+    <div class="credential-row"><div class="credential-label">Business Type</div><div class="credential-value">Construction &amp; Real Estate Development</div></div>
+  </div>
+</section>
+
+<!-- ── CONTACT / CORPORATE INFO ── -->
+<section class="section" aria-labelledby="contact-heading">
+  <div class="section-center">
+    <h2 id="contact-heading">Get in Touch.</h2>
+    <p class="section-sub">For general inquiries about INVCO Group, projects, partnerships, or business development, contact us through Avanza Homes.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-block">
+      <h4>Office</h4>
+      <p>2400 Maitland Center Parkway<br>Maitland, FL 32751</p>
+    </div>
+    <div class="contact-block">
+      <h4>Online</h4>
+      <a href="https://avanza.homes">avanza.homes</a>
+      <a href="https://instagram.com/andersondevelops">@AndersonDevelops on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <img src="brand_assets/Copy%20of%20Avanza%20Homes%20Logo%20Negativo.png" alt="Avanza Homes logo" width="140" height="24">
+      <p class="footer-tagline">INVCO Group is the Florida-based parent construction and development company behind Avanza Homes.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/index.html">avanza.homes</a>
+      <a href="https://instagram.com/andersondevelops">@AndersonDevelops on Instagram</a>
+      <a href="https://go.avanza.homes/privacy-policy">Privacy Policy</a>
+      <a href="https://go.avanza.homes/termsofuse">Terms of Use</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Avanza Homes | INVCO Group. All rights reserved.</span>
+    <span class="footer-sub">INVCO Group &mdash; Parent company of Avanza Homes. Investment Construction LLC, Maitland, FL.</span>
+  </div>
+</footer>
+
+<script>
+  // Team carousel
+  (function () {
+    const track = document.getElementById('teamTrack');
+    const prev = document.getElementById('teamPrev');
+    const next = document.getElementById('teamNext');
+    if (!track || !prev || !next) return;
+    const scrollBy = 220;
+    prev.addEventListener('click', () => { track.scrollBy({left: -scrollBy, behavior: 'smooth'}); });
+    next.addEventListener('click', () => { track.scrollBy({left: scrollBy, behavior: 'smooth'}); });
+  })();
+
+  // Image protection
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('.team-photo-wrap, .hero-media, .story-img-wrap, .story-collage, .feature-card-img, .brand-split-logo')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  document.querySelectorAll('img').forEach(function(img) { img.setAttribute('draggable', 'false'); });
+</script>
+
+</body>
+</html>
